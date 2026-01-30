@@ -1,14 +1,10 @@
 Config = {}
 
--- Touche pour ouvrir le menu (F5 par défaut)
-Config.OpenKey = 166 -- F5
-
 -- Liste des véhicules par catégorie
 Config.Vehicles = {
     {
         category = "Compacts",
         vehicles = {
-            {name = "Weeny Peanut", model = "peanut"},
             {name = "Bordeaux Arias", model = "arias"},
             {name = "Vulcar Zinger", model = "zinger"},
         }
@@ -53,7 +49,6 @@ Config.Vehicles = {
     {
         category = "Vans",
         vehicles = {
-            {name = "Rumpo Escape", model = "rumpo_escape"},
             {name = "Vapid Bobcat CTX RWD", model = "bcatctx"},
         }
     },

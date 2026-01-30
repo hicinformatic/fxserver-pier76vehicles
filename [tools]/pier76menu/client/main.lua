@@ -57,17 +57,10 @@ function GetSavedHandlingValue(vehicle, key)
     return nil
 end
 
--- Détection des touches
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        
-        -- Touche F5 pour ouvrir/fermer le menu
-        if IsControlJustPressed(0, Config.OpenKey) then
-            ToggleMenu()
-        end
-    end
-end)
+-- Commande pour ouvrir le menu
+RegisterCommand('pier76menu', function()
+    ToggleMenu()
+end, false)
 
 -- Callback pour basculer le mode caméra depuis le NUI
 RegisterNUICallback('toggleCamera', function(data, cb)
