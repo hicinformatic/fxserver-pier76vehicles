@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="camera-hint">Appuyez sur <strong>X</strong> pour bouger la caméra</div>
+    <div class="camera-overlay">MODE CAMÉRA - Appuyez sur X pour revenir au curseur</div>
+    
+    <!-- Menu principal -->
+    <div id="mainMenu" class="hidden">
+        <div class="main-menu-container">
+            <h2>Menu Pier76</h2>
+            <button class="menu-btn" onclick="showVehicles()">Véhicules</button>
+            <button class="menu-btn" onclick="showSettings()">Réglages</button>
+            <button class="menu-btn" onclick="showModkit()">Modkit</button>
+            <button class="menu-btn close" onclick="closeMenu()">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Menu Véhicules (centre) -->
+    <div id="vehiclesMenu" class="hidden">
+        <div class="center-menu-container">
+            <h2>Véhicules</h2>
+            <input type="text" id="searchInput" placeholder="Rechercher..." oninput="renderTable(this.value.toLowerCase())">
+            <button onclick="deleteVehicle()">Supprimer</button>
+            <button onclick="repairVehicle()">Réparer</button>
+            <table id="vehicleTable">
+                <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Nom</th>
+                        <th>Modèle</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            <button onclick="backToMain()">Retour</button>
+        </div>
+    </div>
+
+    <!-- Menu Réglages (droite) -->
+    <div id="settingsMenu" class="hidden">
+        <div class="right-menu-container">
+            <h2>Réglages</h2>
+            <div id="settingsList"></div>
+            <button onclick="resetHandling()" style="background: #ffcccc; width: 100%;">Réinitialiser par défaut</button>
+            <button onclick="backToMain()">Retour</button>
+        </div>
+    </div>
+
+    <!-- Menu Modkit (gauche + droite) -->
+    <div id="modkitMenu" class="hidden">
+        <!-- Animations (gauche) -->
+        <div class="left-menu-container">
+            <!-- Section Animations -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('animationsSection')">
+                    <span>Animations</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="animationsSection" class="accordion-content collapsed">
+                    <div id="animationsList"></div>
+                    <button onclick="closeAllDoors()">Tout fermer</button>
+                </div>
+            </div>
+            
+            <!-- Section Fonctions -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('fonctionsSection')">
+                    <span>Fonctions</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="fonctionsSection" class="accordion-content collapsed">
+                    <button id="engineBtn" onclick="toggleEngine()">Moteur: ...</button>
+                    <button id="lightsBtn" onclick="toggleLights()">Lumières: ...</button>
+                    <button id="brakeLightBtn" onclick="toggleBrakeLight()">Feux stop: OFF</button>
+                    <button id="indicatorLeftBtn" onclick="toggleIndicator('left')">Clignotant G: OFF</button>
+                    <button id="indicatorRightBtn" onclick="toggleIndicator('right')">Clignotant D: OFF</button>
+                    <button id="indicatorBothBtn" onclick="toggleIndicator('both')">Warning: OFF</button>
+                    <button id="hornBtn" onclick="toggleHorn()">Klaxon: OFF</button>
+                </div>
+            </div>
+            
+            <!-- Section Environnement -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('environmentSection')">
+                    <span>Environnement</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="environmentSection" class="accordion-content collapsed">
+                    <button onclick="setNight()" style="background: #d0d0ff;">🌙 Nuit (00h)</button>
+                    <button onclick="setDay()" style="background: #fff4cc;">☀️ Jour (12h)</button>
+                </div>
+            </div>
+            
+            <button onclick="backToMain()">Retour</button>
+        </div>
+        
+        <!-- Mods (droite) -->
+        <div class="right-menu-container">
+            <!-- Section Extérieur -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('exteriorSection')">
+                    <span>Extérieur</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="exteriorSection" class="accordion-content collapsed">
+                    <div id="exteriorList"></div>
+                </div>
+            </div>
+            
+            <!-- Section Intérieur -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('interiorSection')">
+                    <span>Intérieur</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="interiorSection" class="accordion-content collapsed">
+                    <div id="interiorList"></div>
+                </div>
+            </div>
+            
+            <!-- Section Propriétés -->
+            <div class="accordion-section">
+                <div class="accordion-header collapsed" onclick="toggleSection('propertiesSection')">
+                    <span>Propriétés</span>
+                    <span class="accordion-icon">›</span>
+                </div>
+                <div id="propertiesSection" class="accordion-content collapsed">
+                    <div id="propertiesList"></div>
+                </div>
+            </div>
+            
+            <button onclick="backToMain()">Retour</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
