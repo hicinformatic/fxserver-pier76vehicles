@@ -32,7 +32,7 @@ ensure [pier76vehicles]/[tools]/pier76menu
 
 ## Menu Pier76
 
-Le menu de gestion des véhicules est accessible via la commande **/vmenu**.
+Le menu de gestion des véhicules est accessible via la commande **/pier76menu**.
 
 ### Fonctionnalités
 
